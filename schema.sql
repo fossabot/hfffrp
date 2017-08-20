@@ -13,9 +13,9 @@ CREATE TYPE hfp_message_with_metadata AS (
 
 CREATE TABLE raw_hfp_messages (
     array_id uuid PRIMARY KEY,
-    received_at_range tstzrange,
-    unique_vehicle_id text,
-    messages hfp_message_with_metadata ARRAY,
+    received_at_range tstzrange NOT NULL,
+    unique_vehicle_id text NOT NULL,
+    messages hfp_message_with_metadata ARRAY NOT NULL,
     EXCLUDE USING GIST (unique_vehicle_id WITH =, received_at_range WITH &&)
 );
 
